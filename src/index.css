@@ -60,8 +60,14 @@ button:focus {
   body {
     background: url('/background.png') center repeat #5e5e5e;
     background-size: contain;
+    font-size: 11px;
   }
   .card {
-    padding: 1rem;
+    padding: .5rem;
+    width: 100vw;
+  }
+  img {
+    width: 260px;
+    height: 300px;
   }
 }
