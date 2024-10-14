@@ -12,9 +12,7 @@ export const App = () => {
     const fetchProductData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `https://outlet-api.netlify.app/api`
-        );
+        const response = await fetch(`https://outlet-api.netlify.app/api`);
         if (!response.ok) throw new Error('Network response was not ok');
 
         const products = await response.json();
@@ -28,25 +26,23 @@ export const App = () => {
     };
 
     fetchProductData();
-  }, [])
+  }, []);
 
   return (
     <>
       {loading ? (
         <>
-          <div className='backdrop-blur'></div>
           <FontAwesomeIcon className='loading' icon={faSpinner} />
         </>
       ) : (
-        ''
+        <div className='container__card'>
+          {data.length > 0
+            ? data.map((item: CardItem, index: number) => {
+                return <Card key={index} item={item} />;
+              })
+            : ''}
+        </div>
       )}
-      <div className='container__card'>
-        {data.length > 0
-          ? data.map((item: CardItem, index: number) => {
-            return <Card key={index} item={item} />;
-          })
-          : ''}
-      </div>
     </>
   );
-}
+};
